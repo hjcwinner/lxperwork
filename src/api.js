@@ -22,6 +22,7 @@ const getAnything = async (path, params = {}) => {
 export const lxperApi = {
     getscreen : () => getAnything("/api/questions"),
     postscreen : () => getAnything("/api/questions"),
-    postid : () => getAnything(`/api/questions/${id}`),
-    postdel : () => getAnything(`/api/questions/${id}`)
+    postidget : (id) => getAnything(`/api/questions/${id}`),
+    postidfetch : (id) => getAnything(`/api/questions/${id}`),
+    postiddel : (id) => getAnything(`/api/questions/${id}`)
 }
