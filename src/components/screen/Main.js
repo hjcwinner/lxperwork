@@ -1,22 +1,33 @@
-import React, {Fragment, useState, useEffect} from 'react';
-import { lxperApi } from '../../api'
-// import axios from 'axios'
+import React, {Fragment, useState, useCallback, useEffect} from 'react';
+// import { lxperApi } from '../../api'
+import axios from 'axios'
+
+const token = "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyTDFNIiwiYWxnIjoiUFMyNTYifQ.eyJ1c2VySUQiOiIwNWM4MTFjNC01MTlmLTQ0ZDktOWJiYi0zMDY2NWFlNzc3MzgiLCJuYW1lIjoi7ZWY7KCV7LKgIiwiaWF0IjoxNjA0OTM4MzE0fQ.X4q-21YOX7pnKfgk7wv3K1fJ-nKcO_Lh_j0GmRgV5bmxoZDWTfeT4pinWS2nu5I7BQajCynv_cNdCYsbUfSM5zFZxY5Tve0f77rCok2kCDgdHifcSY4iLUprWFcxIww-ijrRV4Ofz580TfXFKvCtW-NftviVUWBI8EOPQG1s3avwZxn3c_G8HvynETPgUrpB1hw6O2JPsxbfIzO_MH3Fty3zn7LNEGl3pSbQSi3y5PHKOboAGckqQrNqgaSZtUUiTFnErlZR8-IZbWAAJ-FH19SQLr9Y_TZFYi0YqP3Qi9kbc3PuWsgXLaOd948VzHcuSUANEfltVFJDomD-14pwUg"
+
+    const apiUrl = 'https://interview.lxper.ai'
+
+    const authAxios = axios.create({
+        baseURL: apiUrl,
+        headers: {
+            Auth: `JWT ${token}`
+        }
+    })
 
 const Main = (props) => {
 
-    const [lxpget, setLxpget] = useState([])
+    // const [lxpget, setLxpget] = useState([])
 
-    const getData = async () => {
-        const [data, dataError] = await lxperApi.getscreen()
-        console.log(data)
+    // const getData = async () => {
+    //     const [data, dataError] = await lxperApi.getscreen()
+    //     console.log(data)
 
-        setLxpget(data)
-        console.log(lxpget)
-    }
+    //     setLxpget(data)
+    //     console.log(lxpget)
+    // }
 
-    useEffect(() => {
-        getData()
-    }, [])
+    // useEffect(() => {
+    //     getData()
+    // }, [])
 
     // axios.get("https://interview.lxper.ai/api/questions", {
     //     headers: {
@@ -24,6 +35,26 @@ const Main = (props) => {
     //     }
     // })
     // .then(res => {console.log(res)})
+
+    const [users, setUsers] = useState([])
+    const [requestError, setRequestError] = useState()
+    
+   const fetchData = useCallback(async () => {
+       try {
+          const result = await authAxios.get(`/api/questions`)
+          console.log("콘솔확인용",result.data)
+          setUsers(result.data)
+       }
+       catch(err){
+           setRequestError(err.message)
+       }
+   })     
+
+   useEffect(() => {
+    fetchData()
+   }, [])
+
+
 
 
     return (
