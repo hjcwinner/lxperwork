@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const makeRequest = (path, params) =>
-    axios.get(`https://interview.lxper.ai/${path}`, {
+    axios.get(`https://interview.lxper.ai${path}`, {
         params: {
             ...params
         }

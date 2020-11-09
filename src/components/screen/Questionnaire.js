@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 
 const Questionnaire = (props) => {
 

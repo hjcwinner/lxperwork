@@ -1,19 +1,21 @@
-import React, { Fragment } from 'react';
-// import { lxperApi } from '../../api'
+import React, {Fragment, useState, useEffect} from 'react';
+import { lxperApi } from '../../api'
 import axios from 'axios'
 
 const Main = (props) => {
 
-    // const [lxpget, setLxpget] = useState([])
+    const [lxpget, setLxpget] = useState([])
 
-    // const getData = async () => {
-    //     const [data, dataError] = await lxperApi.getscreen()
-    //     console.log(data)
-    // }
+    const getData = async () => {
+        const [data, dataError] = await lxperApi.getscreen()
+        console.log(data)
 
-    // useEffect(() => {
-    //     getData()
-    // }, [])
+        setLxpget(data)
+    }
+
+    useEffect(() => {
+        getData()
+    }, [])
 
     // axios.get("https://interview.lxper.ai/api/questions", {
     //     headers: {
@@ -22,12 +24,6 @@ const Main = (props) => {
     // })
     // .then(res => {console.log(res)})
 
-    axios.get("https://interview.lxper.ai/api/questions", {
-            headers: {
-                Auth: "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyTDFNIiwiYWxnIjoiUFMyNTYifQ.eyJ1c2VySUQiOiIwNWM4MTFjNC01MTlmLTQ0ZDktOWJiYi0zMDY2NWFlNzc3MzgiLCJuYW1lIjoi7ZWY7KCV7LKgIiwiaWF0IjoxNjA0OTI3MzIyfQ.ho7aVR-TD-SOlIdO_xyZsK6HlmRAvwB3zDGF7V9pR9IhHhYNwK0EdDOZpIO9NV9h0NDrgWW13-PLe0ET3d1VZU3Pks7z2lThh0uinY4bbRQ6fHwKbwH_6yExrs5JIfORCiBDyQArmaoAAU0anNb__NCT0sdH5UNj7qpLOgK41xtYFSNyN9BzrDFI7hKxb_-Z6Lwhd7sAlJDvnPWCk5Q1odTFemkqR4mlquDDi2dg2IN8c-iiXYctMTKl8ZjZKFCIykxBeTXfz5SLDq1w9VK4Drzd2HUiLDiiBxJ2Hl0GDLkLRrIAApYT89iGqyFAlIx_B_vBtjLhcztDS20BHFjOXQ"
-            }
-        })
-        .then(res => {console.log(res)})
 
     return (
         <Fragment>
