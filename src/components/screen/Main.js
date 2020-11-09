@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import { lxperApi } from '../../api'
-import axios from 'axios'
+// import axios from 'axios'
 
 const Main = (props) => {
 
@@ -11,6 +11,7 @@ const Main = (props) => {
         console.log(data)
 
         setLxpget(data)
+        console.log(lxpget)
     }
 
     useEffect(() => {
