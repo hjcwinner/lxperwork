@@ -1,6 +1,7 @@
 import React, {Fragment, useState, useCallback, useEffect} from 'react';
 // import { lxperApi } from '../../api'
 import axios from 'axios'
+import Loader from '../Loader'
 
 const token = "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyTDFNIiwiYWxnIjoiUFMyNTYifQ.eyJ1c2VySUQiOiIwNWM4MTFjNC01MTlmLTQ0ZDktOWJiYi0zMDY2NWFlNzc3MzgiLCJuYW1lIjoi7ZWY7KCV7LKgIiwiaWF0IjoxNjA0OTM4MzE0fQ.X4q-21YOX7pnKfgk7wv3K1fJ-nKcO_Lh_j0GmRgV5bmxoZDWTfeT4pinWS2nu5I7BQajCynv_cNdCYsbUfSM5zFZxY5Tve0f77rCok2kCDgdHifcSY4iLUprWFcxIww-ijrRV4Ofz580TfXFKvCtW-NftviVUWBI8EOPQG1s3avwZxn3c_G8HvynETPgUrpB1hw6O2JPsxbfIzO_MH3Fty3zn7LNEGl3pSbQSi3y5PHKOboAGckqQrNqgaSZtUUiTFnErlZR8-IZbWAAJ-FH19SQLr9Y_TZFYi0YqP3Qi9kbc3PuWsgXLaOd948VzHcuSUANEfltVFJDomD-14pwUg"
 
@@ -16,6 +17,7 @@ const token = "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyT
 const Main = (props) => {
 
     const [users, setUsers] = useState([])
+    const [loading, setLoading] = useState(true)
     const [requestError, setRequestError] = useState()
     
    const fetchData = useCallback(async () => {
@@ -23,7 +25,7 @@ const Main = (props) => {
           const result = await authAxios.get(`/api/questions`)
              console.log("콘솔확인용",result.data)
               setUsers([...result.data])
-              console.log(users)
+              setLoading(false)
        }
        catch(err){
            setRequestError(err.message)
@@ -36,12 +38,15 @@ const Main = (props) => {
 
 
     return (
+        loading
+        ? <Loader />
+        :
         <Fragment>
         <div className='container'>
             <div className='row'>
                 <div className='col-md-8 m-auto'>
                     <h1 className='large text-primary text-center'>
-                        문제출제
+                        문제목록
                     </h1>
                         {users.map((user) => (                 
                         <div class="row">
