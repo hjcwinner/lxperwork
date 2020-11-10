@@ -15,35 +15,15 @@ const token = "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyT
 
 const Main = (props) => {
 
-    // const [lxpget, setLxpget] = useState([])
-
-    // const getData = async () => {
-    //     const [data, dataError] = await lxperApi.getscreen()
-    //     console.log(data)
-
-    //     setLxpget(data)
-    //     console.log(lxpget)
-    // }
-
-    // useEffect(() => {
-    //     getData()
-    // }, [])
-
-    // axios.get("https://interview.lxper.ai/api/questions", {
-    //     headers: {
-    //         Auth : "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyTDFNIiwiYWxnIjoiUFMyNTYifQ.eyJ1c2VySUQiOiIwNWM4MTFjNC01MTlmLTQ0ZDktOWJiYi0zMDY2NWFlNzc3MzgiLCJuYW1lIjoi7ZWY7KCV7LKgIiwiaWF0IjoxNjA0ODc4MDI4fQ.j96jIuSQLMVdGuhLRCjsckZCKnM2XcYx2vMdqYB0xIsNVjY8zgC-ss4TglbW954-qeayLdog1AacdD5aYGZgRNgzJlMeWmot97xnP8AD5rOLA5dbbf0OKQvolz_GLatzr1wzBgs2GvLTFCjxpdk_9QPtGZj1S16lhP-b8IHQhIhWWp5Mw7SIMDWpejn4VEZbuYB-lVwbGv7pf22hhvYw_cBmdO7W1Bo7wTHKKTp1i5T_WHlH54ZgClJrCXKNQGTUM7IujPXgGinOdPO6t5RdHrH06jdYKnfJ2wqGRwjDrKeYQJ686--c64s9omNXBl3aD8Q_Wp60BoYsNlyOFs5dWQ"
-    //     }
-    // })
-    // .then(res => {console.log(res)})
-
     const [users, setUsers] = useState([])
     const [requestError, setRequestError] = useState()
     
    const fetchData = useCallback(async () => {
        try {
           const result = await authAxios.get(`/api/questions`)
-          console.log("콘솔확인용",result.data)
-          setUsers(result.data)
+             console.log("콘솔확인용",result.data)
+              setUsers([...result.data])
+              console.log(users)
        }
        catch(err){
            setRequestError(err.message)
@@ -55,8 +35,6 @@ const Main = (props) => {
    }, [])
 
 
-
-
     return (
         <Fragment>
         <div className='container'>
@@ -65,46 +43,23 @@ const Main = (props) => {
                     <h1 className='large text-primary text-center'>
                         문제출제
                     </h1>
-                    <div class="row">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
+                        {users.map((user) => (                 
+                        <div class="row">
                             <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
+                                <div class="card-body">
+                                    <h5 class="card-title">{user.number} . {user.direction}</h5>
+                                    <p class="card-text">{user.content}</p>
+                                    {user.choices.map((choice) => (
+                                    <div>
+                                        <p>{choice}</p>
+                                    </div>
+                                    ))}  
+                                </div>
                             </div>
+                            <br />
                         </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-
-                </div>
+                        ))}   
+                 </div>
             </div>
         </div>
     </Fragment>
