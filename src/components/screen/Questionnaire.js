@@ -1,5 +1,17 @@
 import axios from 'axios';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useCallback } from 'react';
+
+
+const token = "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyTDFNIiwiYWxnIjoiUFMyNTYifQ.eyJ1c2VySUQiOiIwNWM4MTFjNC01MTlmLTQ0ZDktOWJiYi0zMDY2NWFlNzc3MzgiLCJuYW1lIjoi7ZWY7KCV7LKgIiwiaWF0IjoxNjA0OTM4MzE0fQ.X4q-21YOX7pnKfgk7wv3K1fJ-nKcO_Lh_j0GmRgV5bmxoZDWTfeT4pinWS2nu5I7BQajCynv_cNdCYsbUfSM5zFZxY5Tve0f77rCok2kCDgdHifcSY4iLUprWFcxIww-ijrRV4Ofz580TfXFKvCtW-NftviVUWBI8EOPQG1s3avwZxn3c_G8HvynETPgUrpB1hw6O2JPsxbfIzO_MH3Fty3zn7LNEGl3pSbQSi3y5PHKOboAGckqQrNqgaSZtUUiTFnErlZR8-IZbWAAJ-FH19SQLr9Y_TZFYi0YqP3Qi9kbc3PuWsgXLaOd948VzHcuSUANEfltVFJDomD-14pwUg"
+
+    const apiUrl = 'https://interview.lxper.ai'
+
+    const authAxios = axios.create({
+        baseURL: apiUrl,
+        headers: {
+            Auth: `JWT ${token}`
+        }
+    })
 
 const Questionnaire = (props) => {
 
@@ -8,26 +20,25 @@ const Questionnaire = (props) => {
         direction : "",
         content : "",
         choices : [],
-        answer : ""
+        anser : "",
+        best : ""
     })
 
-    const { number, direction, content, choices, answer } = data
+    const [quest, setQuest] = useState(false)
+  
+    const { number, direction, content, choices, anser, best } = data
 
     const onChange = e => {
         setData({...data, [e.target.name] : e.target.value})
-        console.log(e.target.value)
     }
 
     const onSubmit = e => {
         e.preventDefault()
 
-        axios.post('http://interview.lxper.ai/api/questions', data)
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+
+        console.log('확인사항', data)
+        // console.log('확인사항', choiceData)
+        // console.log('확인사항', anser)
     }
 
     return (
@@ -94,25 +105,52 @@ const Questionnaire = (props) => {
                                         class="form-control" 
                                         placeholder="정답을 입력하세요"
                                         required
-                                        name='choices'
-                                        value={choices}
+                                        name='best'
+                                        value={best}
                                         onChange={e => onChange(e)}
                                         />
                                     </div>
                                     <div class="col-sm">
-                                        <button onClick={ () => {} } type="button" class="btn btn-success">+</button>
+                                        <button onClick={ () => {
+                                            var arrayCopy = data
+                                            arrayCopy.choices.unshift(best)
+                                            setData(arrayCopy)
+                                            console.log(data)
+                                            setQuest(true)
+                                        }} class="btn btn-success">+</button>
+                                        
+                                        {quest 
+                                        ? <div>
+                                            <ul>
+                                                {data.choices.map(item => (
+                                                    <li>
+                                                        <input type="radio" name="radio" value={item.id} onChange={e => onChange(e)}/>{item}
+                                                    </li>
+                                            ))}
+                                            </ul>
+                                        </div>
+                                        : null
+                                        }
+
+                                        {/* <div>
+                                            <ul>
+                                                {data.choices.map(item => (
+                                                    <li>
+                                                        <input type="radio" name="radio" value={item.id} onChange={e => onChange(e)}/>{item}
+                                                    </li>
+                                            ))}
+                                            </ul>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <br/>
                                 <p>*등록하신 답지 중 옳은 답 하나를 반드시 선택하고 제출하셔야 합니다.</p>
                             </div>
-                        </form>
-                        <br/>
-                        <div>
                             <button type="submit" class="btn btn-primary btn-lg">SUBMIT</button>
                             <button type="button" class="btn btn-secondary btn-lg">REST</button>
                             <button type="button" class="btn btn-secondary btn-lg">CANCEL</button>
-                        </div>
+                        </form>
+                        <br/>
                     </div>
                 </div>
             </div>
