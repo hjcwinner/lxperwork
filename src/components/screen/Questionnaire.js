@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { Fragment, useState, useCallback } from 'react';
+import React, { Fragment, useState } from 'react';
+import PropTypes from 'prop-types'
 
-const token = "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyTDFNIiwiYWxnIjoiUFMyNTYifQ.eyJ1c2VySUQiOiIwNWM4MTFjNC01MTlmLTQ0ZDktOWJiYi0zMDY2NWFlNzc3MzgiLCJuYW1lIjoi7ZWY7KCV7LKgIiwiaWF0IjoxNjA0OTM4MzE0fQ.X4q-21YOX7pnKfgk7wv3K1fJ-nKcO_Lh_j0GmRgV5bmxoZDWTfeT4pinWS2nu5I7BQajCynv_cNdCYsbUfSM5zFZxY5Tve0f77rCok2kCDgdHifcSY4iLUprWFcxIww-ijrRV4Ofz580TfXFKvCtW-NftviVUWBI8EOPQG1s3avwZxn3c_G8HvynETPgUrpB1hw6O2JPsxbfIzO_MH3Fty3zn7LNEGl3pSbQSi3y5PHKOboAGckqQrNqgaSZtUUiTFnErlZR8-IZbWAAJ-FH19SQLr9Y_TZFYi0YqP3Qi9kbc3PuWsgXLaOd948VzHcuSUANEfltVFJDomD-14pwUg"
+const token = "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyTDFNIiwiYWxnIjoiUFMyNTYifQ.eyJ1c2VySUQiOiIwNWM4MTFjNC01MTlmLTQ0ZDktOWJiYi0zMDY2NWFlNzc3MzgiLCJuYW1lIjoi7ZWY7KCV7LKgIiwiaWF0IjoxNjA1MDcxMjY2fQ.EbE6OdRSgtIiMVDeqE22G9Y56aLJCZZMJTdVYBkfFyPPP5ouVaUs3x8fvS_JotThBbsfTvyi6SMJKE7kAiel5474KWfAajtuf5-nV4gQ-c1riufbUFo2Xsi0kxnJytZKbGSnTE5bZ0gE4MY0OSTlN3Alhghvtl0lMP-sjWpLdJHeaOIn0vFuPF1atMV8Pp0M-lbejY4lg4Ais7ssYfsbGW0ONCi5ahMVY10keb590DY7IlxwFNXLHX3KiXzgegRJaYjDPI-VfkS0SGda4CMu4X1vQG1L2FLDOd8housDmMQ1Bhhii55qzISrpxxP275mNs3tmWhWwOyjo-H_7TuxXg"
 
     const apiUrl = 'https://interview.lxper.ai'
 
@@ -12,23 +13,27 @@ const token = "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyT
         }
     })
 
-const Questionnaire = (props) => {
+const Questionnaire = (props) => { 
 
     const [data, setData] = useState({
-        number : "",
-        direction : "",
-        content : "",
-        choices : [],
-        anser : ""
+        id: "",
+        number: 0,
+        direction: "",
+        content: "",
+        choices: [
+            ""
+        ],
+        answer: 0
     })
+
 
     const [best, setBest] = useState("") 
 
     const [choices3, setChoices3] = useState([])
 
     const [quest, setQuest] = useState(false)
-  
-    const { number, direction, content, anser} = data
+
+    const { number, direction, content, answer} = data
 
     const onChange = e => {
         setData({...data, [e.target.name] : e.target.value})
@@ -38,15 +43,14 @@ const Questionnaire = (props) => {
         setBest(e.target.value)
     }
 
-    const onSubmit = e => {
-        e.preventDefault()
-    }
-
-    const addItem = () => {
+    const choiadd = () => {
         var arrayCopy = data
         arrayCopy.choices.unshift(best)
+        arrayCopy.number = Number(arrayCopy.number)
+        arrayCopy.answer = Number(arrayCopy.answer)
+        console.log(arrayCopy.number)
+        console.log(arrayCopy.answer)
         setData(arrayCopy)
-        console.log('확인사항', data)
     }
 
     const additem = () => {
@@ -54,6 +58,21 @@ const Questionnaire = (props) => {
             best
         ])
     }
+
+    const onSubmit = e => {
+        e.preventDefault()
+        // const body = JSON.stringify(data);
+        // console.log(body)
+        // authAxios.post("/api/questions", body)
+        console.log(data)
+        authAxios.post("/api/questions", data)
+        .then(res => {
+            console.log(res)
+        })
+    }
+
+
+
 
     return (
         <Fragment>
@@ -71,7 +90,7 @@ const Questionnaire = (props) => {
                                         <input type="number" 
                                         class="form-control" 
                                         placeholder="질문을 입력하세요"
-                                        required
+                                        // required
                                         name='number'
                                         value={number}
                                         onChange={e => onChange(e)}
@@ -86,7 +105,7 @@ const Questionnaire = (props) => {
                                         <textarea type="text" 
                                         class="form-control" 
                                         placeholder="지시문을 입력하세요"
-                                        required
+                                        // required
                                         name='direction'
                                         value={direction}
                                         onChange={e => onChange(e)}>
@@ -101,7 +120,7 @@ const Questionnaire = (props) => {
                                         <textarea type="text" 
                                         class="form-control" 
                                         placeholder="글 입력하세요"
-                                        required
+                                        // required
                                         name='content'
                                         value={content}
                                         onChange={e => onChange(e)}
@@ -112,13 +131,13 @@ const Questionnaire = (props) => {
                                 </div>
                             </div>
                             <div class="form-group">
-                            <label for="exampleFormControlInput1">정답</label>
+                                <label for="exampleFormControlInput1">정답</label>
                                 <div class="row">
-                                <div class="col-sm">
+                                    <div class="col-sm">
                                         <input type="text" 
                                         class="form-control" 
                                         placeholder="정답을 입력하세요"
-                                        required
+                                        // required
                                         name='best'
                                         value={best}
                                         onChange={e => onChangebest(e)}
@@ -128,8 +147,8 @@ const Questionnaire = (props) => {
                                         <button onClick={ () => {
                                             setQuest(true)
                                             additem()
-                                            addItem()
-                                        }} class="btn btn-success">+</button>
+                                            
+                                        }} class="btn btn-primary btn-lg" type="button">+</button>
                                     </div>       
                                 </div>
                             </div>
@@ -138,7 +157,7 @@ const Questionnaire = (props) => {
                                 <ul>   
                                     {choices3.map((item, i) => (
                                         <li>      
-                                            <input key={i} type="radio" name="anser" value={i} onChange={e => onChange(e)}/> {i}. {item}
+                                            <input key={i} type="radio" name="answer" value={i} onChange={e => onChange(e)}/> {i+1}. {item}
                                         </li>
                                 ))}
                                 </ul>
@@ -146,7 +165,7 @@ const Questionnaire = (props) => {
                             : null
                             }
                             <p>*등록하신 답지 중 옳은 답 하나를 반드시 선택하고 제출하셔야 합니다.</p>
-                            <button type="submit" class="btn btn-primary btn-lg">SUBMIT</button>
+                            <button type="submit" onClick={ () => {choiadd()}} class="btn btn-primary btn-lg">SUBMIT</button>
                             <button type="button" class="btn btn-secondary btn-lg">REST</button>
                             <button type="button" class="btn btn-secondary btn-lg">CANCEL</button>
                         </form>
@@ -157,5 +176,14 @@ const Questionnaire = (props) => {
         </Fragment>
     );
 };
+
+Questionnaire.propTypes = {
+    id : PropTypes.string,
+    number : PropTypes.number,
+    direction : PropTypes.string,
+    content : PropTypes.string,
+    choices : PropTypes.array,
+    answer : PropTypes.number,
+}
 
 export default Questionnaire;
