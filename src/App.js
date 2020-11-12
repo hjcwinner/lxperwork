@@ -7,6 +7,7 @@ import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import Main from './components/screen/Main'
 import Questionnaire from './components/screen/Questionnaire'
+import Put from './components/screen/Put'
 
 
 function App() {
@@ -17,8 +18,9 @@ function App() {
         <Route path="/" exact component={Landing} />
         <section>
           <Switch>
-            <Route path="/Main" exact component={Main} />
-            <Route path="/Questionnaire" exact component={Questionnaire} />
+            <Route path="/main" exact component={Main} />
+            <Route path="/questionnaire" exact component={Questionnaire} />
+            <Route path="/edit/:id" exact component={Put} />
             <Route path="/register" exact component={Register} />
             <Route path="/login" exact component={Login} />          
           </Switch>
