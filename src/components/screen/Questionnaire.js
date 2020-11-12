@@ -48,8 +48,6 @@ const Questionnaire = (props) => {
         arrayCopy.choices.unshift(best)
         arrayCopy.number = Number(arrayCopy.number)
         arrayCopy.answer = Number(arrayCopy.answer)
-        console.log(arrayCopy.number)
-        console.log(arrayCopy.answer)
         setData(arrayCopy)
     }
 
@@ -70,9 +68,6 @@ const Questionnaire = (props) => {
             console.log(res)
         })
     }
-
-
-
 
     return (
         <Fragment>
