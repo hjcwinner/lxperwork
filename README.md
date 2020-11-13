@@ -23,10 +23,12 @@
 * styled-components, bootstrap, react-bootstrap 이용한 css
 
 *프로젝트에서 routing을 위해서 react-router-dom을 사용
-*DETAIL페이지, POST에서 api값을 받고 뿌려주기 위해서 hook이 꼭 필요
-*비동기방식으로 json데이터를 쉽게 받고 보내기 위해 axios사용
-*LOGIN후 토큰값을 담고,삭제 하기 위해 localStorage사용
 
+*DETAIL페이지, POST에서 api값을 받고 뿌려주기 위해서 hook이 꼭 필요
+
+*비동기방식으로 json데이터를 쉽게 받고 보내기 위해 axios사용
+
+*LOGIN후 토큰값을 담고,삭제 하기 위해 localStorage사용
 
 ## 스터디노트
 ------------
