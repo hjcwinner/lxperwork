@@ -6,8 +6,11 @@
 
 ## 완성 화면
 ----------
-!<img src="https://user-images.githubusercontent.com/67583080/99089796-1b584000-2611-11eb-9196-3766703d8723.PNG" width="20%">
-
+<img src="https://user-images.githubusercontent.com/67583080/99089796-1b584000-2611-11eb-9196-3766703d8723.PNG" width="20%">
+<img src="https://user-images.githubusercontent.com/67583080/99090410-f4e6d480-2611-11eb-8bdf-e1dc0045bc17.PNG" width="20%">
+<img src="https://user-images.githubusercontent.com/67583080/99090411-f57f6b00-2611-11eb-8312-534e9e5f4298.PNG" width="20%">
+<img src="https://user-images.githubusercontent.com/67583080/99090413-f6180180-2611-11eb-99ef-c12396b3b860.PNG" width="20%">
+<img src="https://user-images.githubusercontent.com/67583080/99090415-f6b09800-2611-11eb-9342-2f24006d6430.PNG" width="20%">
 
 
 ## 배포하기
