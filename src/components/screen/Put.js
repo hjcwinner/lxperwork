@@ -110,6 +110,21 @@ const Questionnaire = ({ match }) => {
         setBest("")
     }
 
+    const deletedata = async() => {
+        authAxios.delete(`/api/questions/${data.id}`)
+             .then(res => {
+                 console.log(res)
+                 if(res.data !=null) {
+                     alert("문제가 삭제 되었습니다.")
+                     history.push("/main")
+                 }
+                 
+             })
+             .catch(err => {
+                 console.log(err)
+             })
+         }
+
     return (
         loading
         ? <Loader />
@@ -203,6 +218,7 @@ const Questionnaire = ({ match }) => {
                             <button type="submit" onClick={ () => {choiadd()}} class="btn btn-primary btn-lg">SUBMIT</button>
                             <button type="button" onClick={ () => {reset()} } class="btn btn-secondary btn-lg">REST</button>
                             <button type="button" onClick={ () => {history.push("/main")}} class="btn btn-secondary btn-lg">CANCEL</button>
+                            <bottom class="btn btn-secondary btn-danger" onClick={ () => {deletedata()}}>문제삭제</bottom>
                         </form>
                         <br/>
                     </div>

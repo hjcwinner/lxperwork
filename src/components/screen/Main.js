@@ -44,7 +44,7 @@ const Main = () => {
             .catch(err => {
                 console.log(err)
             })
-   }
+        }
 
    useEffect(() => {
     fetchData()
@@ -74,10 +74,8 @@ const Main = () => {
                                     </div>
                                     ))}  
                                 </div>
-                                <div style={{textAlign : "right"}}>
-                                <Link to=""><bottom class="btn btn-secondary btn-primary">문제풀기</bottom></Link>   
+                                <div style={{textAlign : "right"}}>   
                                 <Link to={`/edit/${user.id}`}><bottom class="btn btn-secondary btn-success">문제수정</bottom></Link> 
-                                <bottom class="btn btn-secondary btn-danger" onClick={ () => {deletedata(user.id)}}>문제삭제</bottom>
                                 </div>
                             </div>
                         </div>
