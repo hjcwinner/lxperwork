@@ -3,6 +3,7 @@ import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 
+const Questionnaire = (props) => {
 
     const token = localStorage.getItem('token')
 
@@ -14,8 +15,6 @@ import { useHistory } from 'react-router-dom'
             Auth: `JWT ${token}`
         }
     })
-
-const Questionnaire = (props) => { 
 
     const [data, setData] = useState({
         id: "",

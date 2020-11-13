@@ -11,7 +11,7 @@ const Landing = (props) => {
                         LXPER 문제은행 하드코딩
                     </p>
                     <div>
-                        <Link to='login' className='btn btn-light'>
+                        <Link to='/login' className='btn btn-light'>
                             Login
                         </Link>
                     </div>

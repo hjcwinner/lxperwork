@@ -4,6 +4,9 @@ import PropTypes from 'prop-types'
 import Loader from '../Loader'
 import { useHistory } from 'react-router-dom'
 
+
+const Questionnaire = ({ match }) => { 
+
     const token = localStorage.getItem('token')
 
     const apiUrl = 'https://interview.lxper.ai'
@@ -14,9 +17,6 @@ import { useHistory } from 'react-router-dom'
             Auth: `JWT ${token}`
         }
     })
-
-
-const Questionnaire = ({ match }) => { 
 
     useEffect(() => {
         getData()

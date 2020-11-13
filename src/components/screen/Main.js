@@ -4,6 +4,8 @@ import axios from 'axios'
 import Loader from '../Loader'
 import {Link} from 'react-router-dom'
 
+const Main = () => {
+
     const token = localStorage.getItem('token')
 
     const apiUrl = 'https://interview.lxper.ai'
@@ -14,8 +16,6 @@ import {Link} from 'react-router-dom'
             Auth: `JWT ${token}`
         }
     })
-
-const Main = () => {
 
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(true)

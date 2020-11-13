@@ -8,6 +8,10 @@ const Login = (props) => {
 
     const history = useHistory()
 
+    const handleHistory = () => {
+        history.push("/main")
+    }
+
     const onChange = e => {
         setData(e.target.value)
     }
@@ -18,7 +22,7 @@ const Login = (props) => {
             .post(`https://interview.lxper.ai/auth/${data}`)
             .then(res => {
                 localStorage.setItem('token', res.data.jwt)
-                history.push("/main")
+                handleHistory()
             })
             .catch(err => {
                 console.log(err)
@@ -48,7 +52,7 @@ const Login = (props) => {
                                     onChange={e => onChange(e)}
                                 />
                             </div>
-                            <input type='submit' className='btn btn-primary' value='Login' size="lg"/>
+                            <input type='submit' className='btn btn-primary' value='Login' size="lg" />
                         </form>
                     </div>
                 </div>
