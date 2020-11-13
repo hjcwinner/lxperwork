@@ -34,7 +34,7 @@ const Questionnaire = ({ match }) => {
     const [loading, setLoading] = useState(true)
 
     const getData = async () => {            
-        const getData = await authAxios.get(`https://interview.lxper.ai/api/questions/${match.params.id}`)
+        const getData = await authAxios.get(`/api/questions/${match.params.id}`)
             .then(res => {
                 setData(res.data)
                 setLoading(false)
@@ -67,14 +67,12 @@ const Questionnaire = ({ match }) => {
     const additem = () => {
         const array = {...data}
         array.choices.push(best)
-        console.log(array)
         setData(array)
     }
 
     const deletelist = (i) => {
         const array = {...data}
         array.choices.splice(i,1)
-        console.log(array)
         setData(array)
     }
 
@@ -82,16 +80,23 @@ const Questionnaire = ({ match }) => {
 
     const onSubmit = e => {
         e.preventDefault()
-
-
-
-
-        history.push("/main")
-        // const body = JSON.stringify(data);
-        // console.log(body)
-        // authAxios.post("/api/questions", body)
-        // console.log(data)
+        console.log("++++++++++++++++++++++++++++++++++++++++++", data.id)
+        putdata()
     }
+
+    const putdata = async() => {
+        await authAxios.post(`/api/questions/${data.id}`, data)
+             .then(res => {
+                 console.log(res)
+                 if(res.data !=null) {
+                     alert("문제가 수정 되었습니다.")
+                     history.push("/main")
+                 }
+             })
+             .catch(err => {
+                 console.log(err)
+             })
+         }
 
     const reset = () => {
         setData({
