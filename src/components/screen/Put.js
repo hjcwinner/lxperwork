@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types'
+import Loader from '../Loader'
+import { useHistory } from 'react-router-dom'
 
 const token = "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyTDFNIiwiYWxnIjoiUFMyNTYifQ.eyJ1c2VySUQiOiIwNWM4MTFjNC01MTlmLTQ0ZDktOWJiYi0zMDY2NWFlNzc3MzgiLCJuYW1lIjoi7ZWY7KCV7LKgIiwiaWF0IjoxNjA1MTg4MTA1fQ.EI-U984M5IfxrbriJzfsnhVfIqzCrsuee7pOVlAvZlSCRi8fEPn8d-L1cdn4p3jslvbGnWZoWoBgjLg3TgH0DgZ5JBuzom_JgwDBx_TZ1lBZ51wcvClVW0V6cqCqXud6rzDAcUexehpP4kHHuMsqWo-UaaXwd3-9HUjClmzhRllzbhWzQnIUdMaCjKNvapQKQxAulQwp829Mq22E0B0XgCXeW3-xUW55N26bqo6aRpnz2NEln1fH6gNz1ZNJcdg-hGNYSodhIbtqrLtMbnrf_jjbsBQPutwQla4Q0UPSjK_cqM9WBNOg2mi2zyDiGTl9X-RFnb8HD7LmlY3jhJSXrw"
 
@@ -25,16 +27,17 @@ const Questionnaire = ({ match }) => {
         number: 0,
         direction: "",
         content: "",
-        choices: [
-            ""
-        ],
+        choices: [],
         answer: 0
     })
+
+    const [loading, setLoading] = useState(true)
 
     const getData = async () => {            
         const getData = await authAxios.get(`https://interview.lxper.ai/api/questions/${match.params.id}`)
             .then(res => {
                 setData(res.data)
+                setLoading(false)
             })
             .catch(err => {
                 console.log(err)
@@ -42,10 +45,6 @@ const Questionnaire = ({ match }) => {
         }
 
     const [best, setBest] = useState("") 
-
-    const [choices3, setChoices3] = useState([])
-
-   
 
     const { number, direction, content, answer} = data
 
@@ -66,34 +65,50 @@ const Questionnaire = ({ match }) => {
     }
 
     const additem = () => {
-        setChoices3([...choices3, 
-            best
-        ])
+        const array = {...data}
+        array.choices.push(best)
+        console.log(array)
+        setData(array)
     }
+
+    const deletelist = (i) => {
+        const array = {...data}
+        array.choices.splice(i,1)
+        console.log(array)
+        setData(array)
+    }
+
+    const history =  useHistory()
 
     const onSubmit = e => {
         e.preventDefault()
+
+
+
+
+        history.push("/main")
         // const body = JSON.stringify(data);
         // console.log(body)
         // authAxios.post("/api/questions", body)
         // console.log(data)
     }
 
-    const deletelist = (item) => {
-        // console.log(item)
-        const array = {...data}
-        const newarray = array.choices.filter(choice => choice !== item)
-        // array.choices.shift(newarray)
-        // // array.choices.unshift(newarray)
-        // console.log(array.choices)
-        // // setData(data.choices.filter(choice => choice !== i))
-        // // console.log(data.choices)
+    const reset = () => {
+        setData({
+            id: "",
+            number: 0,
+            direction: "",
+            content: "",
+            choices: [],
+            answer: 0
+        })
+        setBest("")
     }
-    
-
-    
 
     return (
+        loading
+        ? <Loader />
+        :
         <Fragment>
             <div className='container'>
                 <div className='row'>
@@ -173,16 +188,16 @@ const Questionnaire = ({ match }) => {
                                 <ul>   
                                     {data.choices.map((item, i) => (
                                         <li>      
-                                            <input key={i} type="radio" name="answer" value={i} onChange={e => onChange(e)}/> {i+1}. {item}
-                                            <button key={i} onClick={() => {deletelist(item)}}> ❌</button>
+                                            <input key={i} type="radio" name="answer" value={i} onChange={e => onChange(e)}/> {i+1}. {item}&nbsp;&nbsp;&nbsp;
+                                            <button onClick={() => {deletelist(i)}}> ❌</button>
                                         </li>
                                 ))}
                                 </ul>
                             </div>
                             <p>*등록하신 답지 중 옳은 답 하나를 반드시 선택하고 제출하셔야 합니다.</p>
                             <button type="submit" onClick={ () => {choiadd()}} class="btn btn-primary btn-lg">SUBMIT</button>
-                            <button type="button" class="btn btn-secondary btn-lg">REST</button>
-                            <button type="button" class="btn btn-secondary btn-lg">CANCEL</button>
+                            <button type="button" onClick={ () => {reset()} } class="btn btn-secondary btn-lg">REST</button>
+                            <button type="button" onClick={ () => {history.push("/main")}} class="btn btn-secondary btn-lg">CANCEL</button>
                         </form>
                         <br/>
                     </div>

@@ -1,9 +1,8 @@
-import React, {Fragment, useState, useCallback, useEffect} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 // import { lxperApi } from '../../api'
 import axios from 'axios'
 import Loader from '../Loader'
 import {Link} from 'react-router-dom'
-import Put from './Put'
 
 const token = "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyTDFNIiwiYWxnIjoiUFMyNTYifQ.eyJ1c2VySUQiOiIwNWM4MTFjNC01MTlmLTQ0ZDktOWJiYi0zMDY2NWFlNzc3MzgiLCJuYW1lIjoi7ZWY7KCV7LKgIiwiaWF0IjoxNjA1MTg4MTA1fQ.EI-U984M5IfxrbriJzfsnhVfIqzCrsuee7pOVlAvZlSCRi8fEPn8d-L1cdn4p3jslvbGnWZoWoBgjLg3TgH0DgZ5JBuzom_JgwDBx_TZ1lBZ51wcvClVW0V6cqCqXud6rzDAcUexehpP4kHHuMsqWo-UaaXwd3-9HUjClmzhRllzbhWzQnIUdMaCjKNvapQKQxAulQwp829Mq22E0B0XgCXeW3-xUW55N26bqo6aRpnz2NEln1fH6gNz1ZNJcdg-hGNYSodhIbtqrLtMbnrf_jjbsBQPutwQla4Q0UPSjK_cqM9WBNOg2mi2zyDiGTl9X-RFnb8HD7LmlY3jhJSXrw"
 
@@ -16,23 +15,22 @@ const token = "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyT
         }
     })
 
-const Main = (props) => {
+const Main = () => {
 
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(true)
     const [requestError, setRequestError] = useState()
     
-   const fetchData = useCallback(async () => {
+   const fetchData = async () => {
        try {
           const result = await authAxios.get(`/api/questions`)
-             console.log("콘솔확인용",result.data)
               setUsers([...result.data])
               setLoading(false)
        }
        catch(err){
            setRequestError(err.message)
        }
-   })
+   }
    
    const deletedata = async(id) => {
        authAxios.delete(`/api/questions/${id}`)
@@ -71,7 +69,7 @@ const Main = (props) => {
                                     <h5 class="card-title">{user.number} . {user.direction}</h5>
                                     <p class="card-text">{user.content}</p>
                                     {user.choices.map((choice, i) => (
-                                    <div>
+                                    <div key={i}>
                                         <p key={i}>{i+1}. {choice}</p>
                                     </div>
                                     ))}  
