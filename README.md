@@ -30,15 +30,13 @@
 
 *LOGIN후 토큰값을 담고,삭제 하기 위해 localStorage사용
 
-## 스터디노트
-------------
-#### react-router-dom을 이용한 nav bar 만들고 적용하기
-
 ## TO DO LIST
-✔︎ 프로젝트 위주의 react 공부
+------------
 
-✔︎ react-native를 활용한 앱 출시하기
+✔︎ 코드 리펙토링
 
-✔︎ 보유한 node-js 기술을 접목한 풀스택 개발 & 서비스 런칭
+✔︎ react-redux를 이용한 상태관리
 
-✔︎ Database에 관련된 공부
+✔︎ 퍼블리셔, 벡엔드 관리자와 협업 및 조율
+
+✔︎ react-native로 제작 및 배포
