@@ -6,7 +6,7 @@
 
 ## 완성 화면
 ----------
-![1 login](https://user-images.githubusercontent.com/67583080/99089796-1b584000-2611-11eb-9196-3766703d8723.PNG){: width="100" height="100"}
+![1 login](https://user-images.githubusercontent.com/67583080/99089796-1b584000-2611-11eb-9196-3766703d8723.PNG){: width="20%" height="20%"}
 
 
 
