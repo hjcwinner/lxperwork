@@ -1,27 +1,29 @@
 import React, { Fragment, useState } from 'react';
 import axios from 'axios'
-
+import { useHistory } from 'react-router-dom'
 
 const Login = (props) => {
 
     const [data, setData] = useState("")
 
+    const history = useHistory()
+
     const onChange = e => {
         setData(e.target.value)
-       console.log(e.target.value)
     }
 
     const onSubmit = e => {
         e.preventDefault()
-        console.log(data)
         axios
             .post(`https://interview.lxper.ai/auth/${data}`)
             .then(res => {
-                console.log(res.data)
-                localStorage.setItem('token', res.token)
+                localStorage.setItem('token', res.data.jwt)
+                history.push("/main")
             })
             .catch(err => {
                 console.log(err)
+                setData("")
+                alert("없는 아이디거나 아이디가 일치하지 않습니다")
             })
     }
 

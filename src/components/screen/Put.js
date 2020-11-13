@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Loader from '../Loader'
 import { useHistory } from 'react-router-dom'
 
-const token = "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyTDFNIiwiYWxnIjoiUFMyNTYifQ.eyJ1c2VySUQiOiIwNWM4MTFjNC01MTlmLTQ0ZDktOWJiYi0zMDY2NWFlNzc3MzgiLCJuYW1lIjoi7ZWY7KCV7LKgIiwiaWF0IjoxNjA1MTg4MTA1fQ.EI-U984M5IfxrbriJzfsnhVfIqzCrsuee7pOVlAvZlSCRi8fEPn8d-L1cdn4p3jslvbGnWZoWoBgjLg3TgH0DgZ5JBuzom_JgwDBx_TZ1lBZ51wcvClVW0V6cqCqXud6rzDAcUexehpP4kHHuMsqWo-UaaXwd3-9HUjClmzhRllzbhWzQnIUdMaCjKNvapQKQxAulQwp829Mq22E0B0XgCXeW3-xUW55N26bqo6aRpnz2NEln1fH6gNz1ZNJcdg-hGNYSodhIbtqrLtMbnrf_jjbsBQPutwQla4Q0UPSjK_cqM9WBNOg2mi2zyDiGTl9X-RFnb8HD7LmlY3jhJSXrw"
+    const token = localStorage.getItem('token')
 
     const apiUrl = 'https://interview.lxper.ai'
 

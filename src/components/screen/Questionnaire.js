@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 
 
-const token = "eyJraWQiOiJCbFg3aDdTNktkdTR0VDdSa1E0b1JQVTlfenJRRGZLRW9fck12TVRyTDFNIiwiYWxnIjoiUFMyNTYifQ.eyJ1c2VySUQiOiIwNWM4MTFjNC01MTlmLTQ0ZDktOWJiYi0zMDY2NWFlNzc3MzgiLCJuYW1lIjoi7ZWY7KCV7LKgIiwiaWF0IjoxNjA1MDcxMjY2fQ.EbE6OdRSgtIiMVDeqE22G9Y56aLJCZZMJTdVYBkfFyPPP5ouVaUs3x8fvS_JotThBbsfTvyi6SMJKE7kAiel5474KWfAajtuf5-nV4gQ-c1riufbUFo2Xsi0kxnJytZKbGSnTE5bZ0gE4MY0OSTlN3Alhghvtl0lMP-sjWpLdJHeaOIn0vFuPF1atMV8Pp0M-lbejY4lg4Ais7ssYfsbGW0ONCi5ahMVY10keb590DY7IlxwFNXLHX3KiXzgegRJaYjDPI-VfkS0SGda4CMu4X1vQG1L2FLDOd8housDmMQ1Bhhii55qzISrpxxP275mNs3tmWhWwOyjo-H_7TuxXg"
+    const token = localStorage.getItem('token')
 
     const apiUrl = 'https://interview.lxper.ai'
 
@@ -76,7 +76,6 @@ const Questionnaire = (props) => {
         .catch(err => {
             console.log(err)
         })
-        
     }
 
     const reset = () => {
