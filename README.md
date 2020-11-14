@@ -40,3 +40,5 @@
 ✔︎ 퍼블리셔, 벡엔드 관리자와 협업 및 조율
 
 ✔︎ react-native로 제작 및 배포
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/24985931-e659-49af-a32d-073e7b4c45b1/deploy-status)](https://app.netlify.com/sites/competent-chandrasekhar-f03c6a/deploys)
