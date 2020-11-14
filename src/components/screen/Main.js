@@ -3,6 +3,7 @@ import React, {Fragment, useState, useEffect} from 'react';
 import axios from 'axios'
 import Loader from '../Loader'
 import {Link} from 'react-router-dom'
+import Nav from '../layout/Navbar'
 
 const Main = () => {
 
@@ -29,12 +30,13 @@ const Main = () => {
        }
        catch(err){
            setRequestError(err.message)
+           console.log(requestError)
        }
    }
 
    useEffect(() => {
     fetchData()
-   }, [])
+   })
 
 
     return (
@@ -70,6 +72,7 @@ const Main = () => {
                  </div>
             </div>
         </div>
+        <Nav/>
     </Fragment>
     
     );

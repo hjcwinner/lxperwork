@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import Nav from '../layout/Navbar'
 
 const Login = (props) => {
 
@@ -57,6 +58,7 @@ const Login = (props) => {
                     </div>
                 </div>
             </div>
+            <Nav />
         </Fragment>
     );
 };

@@ -3,21 +3,16 @@ import { Link } from 'react-router-dom'
 
 const Navbar = (props) => {
 
-    const [log, setLog] = useState(false)
+    // const token = localStorage.getItem('token')
 
-    const token = localStorage.getItem('token')
+    const [token, setToken] = useState(localStorage.getItem('token'))
 
     const authLink = (
         <ul>
             <Link to="/"><botton type="button" onClick ={ () => {
-                localStorage.clear('token')
-                setLog(true)
+                setToken(localStorage.clear('token'))
                 }} >LOGOUT</botton></Link>
         </ul>
-    )
-
-    const guestLinks = (
-        null
     )
 
     return (

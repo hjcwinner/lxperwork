@@ -65,7 +65,6 @@ const Questionnaire = (props) => {
 
     const onSubmit = e => {
         e.preventDefault()
-        console.log(data)
         authAxios.post("/api/questions", data)
         .then(res => {
             console.log(res)
