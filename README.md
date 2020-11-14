@@ -9,10 +9,9 @@
 <img src="https://user-images.githubusercontent.com/67583080/99089796-1b584000-2611-11eb-9196-3766703d8723.PNG" width="33%"><img src="https://user-images.githubusercontent.com/67583080/99090410-f4e6d480-2611-11eb-8bdf-e1dc0045bc17.PNG" width="33%"><img src="https://user-images.githubusercontent.com/67583080/99090411-f57f6b00-2611-11eb-8312-534e9e5f4298.PNG" width="33%">
 <img src="https://user-images.githubusercontent.com/67583080/99090413-f6180180-2611-11eb-99ef-c12396b3b860.PNG" width="33%"><img src="https://user-images.githubusercontent.com/67583080/99090415-f6b09800-2611-11eb-9342-2f24006d6430.PNG" width="33%">
 
-## 배포하기(실행방법)
+## 실행방법
 ----------
-배포주소 : 
-* 주소창에 들어가서 로그인(id : 05c811c4-519f-44d9-9bbb-30665ae77738)후 문제 리스트 확인후 +버튼을 눌러서
+* 로그인(id : 05c811c4-519f-44d9-9bbb-30665ae77738)후 문제 리스트 확인후 +버튼을 눌러서
   새글(create)작성을 하고 작성한 후에 list화면에서 연필모양을 눌러서 Detail, Post(수정), Delete을 확인
 
 ## 활용한 기술
@@ -40,5 +39,3 @@
 ✔︎ 퍼블리셔, 벡엔드 관리자와 협업 및 조율
 
 ✔︎ react-native로 제작 및 배포
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/24985931-e659-49af-a32d-073e7b4c45b1/deploy-status)](https://app.netlify.com/sites/competent-chandrasekhar-f03c6a/deploys)
