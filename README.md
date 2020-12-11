@@ -14,7 +14,6 @@
 * 로그인(id : 05c811c4-519f-44d9-9bbb-30665ae77738)후 문제 리스트 확인후 +버튼을 눌러서
   새글(create)작성을 하고 작성한 후에 list화면에서 연필모양을 눌러서 Detail, Post(수정), Delete을 확인
 * 배포주소 : https://hjcwinner.github.io/
-* 과제youtube주소 : https://www.youtube.com/watch?v=Nw4ri3u3mkM
 
 ## 활용한 기술
 ----------
